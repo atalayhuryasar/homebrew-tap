@@ -1,18 +1,37 @@
-# Atalayhuryasar Tap
+# atalayhuryasar / homebrew-tap 🍺
 
-## How do I install these formulae?
+Official Homebrew Tap for macOS applications and utilities by [@atalayhuryasar](https://github.com/atalayhuryasar).
 
-`brew install atalayhuryasar/tap/<formula>`
+---
 
-Or `brew tap atalayhuryasar/tap` and then `brew install <formula>`.
+## 📦 Available Casks
 
-Or, in a `brew bundle` `Brewfile`:
+| App | Description | Installation |
+|---|---|---|
+| **mailto:** | Lightweight, on-demand `mailto:` router for macOS | `brew install --cask atalayhuryasar/tap/mailto` |
 
-```ruby
-tap "atalayhuryasar/tap"
-brew "<formula>"
+---
+
+## 🚀 Usage
+
+### Install an application
+```bash
+brew install --cask atalayhuryasar/tap/<cask-name>
 ```
 
-## Documentation
+Or tap the repository first:
+```bash
+brew tap atalayhuryasar/tap
+brew install --cask <cask-name>
+```
 
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+### Update applications
+```bash
+brew update
+brew upgrade --cask
+```
+
+---
+
+## 📄 License
+Individual formulae and casks are released under their respective open-source project licenses.
