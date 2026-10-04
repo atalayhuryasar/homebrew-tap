@@ -5,7 +5,7 @@ cask "mailto" do
   url "https://github.com/atalayhuryasar/mailto/releases/download/v#{version}/mailto.zip"
   name "mailto"
   name "mailto:"
-  desc "Lightweight, on-demand mailto: router for macOS"
+  desc "Lightweight, on-demand mailto: router"
   homepage "https://github.com/atalayhuryasar/mailto"
 
   depends_on macos: :sonoma
@@ -13,7 +13,7 @@ cask "mailto" do
   app "mailto.app"
 
   zap trash: [
-    "~/Library/Preferences/com.atalayhuryasar.mailto.plist",
     "~/Library/Application Support/mailto",
+    "~/Library/Preferences/com.atalayhuryasar.mailto.plist",
   ]
 end
