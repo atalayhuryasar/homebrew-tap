@@ -1,6 +1,6 @@
 cask "mailto" do
-  version "1.2.4"
-  sha256 "c77ad0c61f40caf13bd060e3917683dd385932b6c9a2b70ff2f85ca296d9a9a6"
+  version "1.2.5"
+  sha256 "730d7aac482b2b26c905b25645528fcb3b41e98201fbaae1d01c9f087e6f1837"
 
   url "https://github.com/atalayhuryasar/mailto/releases/download/v#{version}/mailto.zip"
   name "mailto"
