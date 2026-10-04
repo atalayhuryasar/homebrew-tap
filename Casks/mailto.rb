@@ -8,7 +8,7 @@ cask "mailto" do
   desc "Lightweight, on-demand mailto: router for macOS"
   homepage "https://github.com/atalayhuryasar/mailto"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "mailto.app"
 
