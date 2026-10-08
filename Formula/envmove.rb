@@ -40,8 +40,14 @@ class Envmove < Formula
     assert_match version.to_s, shell_output("#{bin}/envmove version")
 
     # Setup must refuse politely outside a repository rather than write state somewhere
-    # unexpected. The message has to name git, otherwise the failure is a mystery.
-    output = shell_output("cd #{tmp} && #{bin}/envmove setup", 1)
+    # unexpected, and the message has to name git or the failure is a mystery.
+    #
+    # No sha256 above on purpose: this builds from source and the tarball is
+    # GitHub-generated, so a checksum pins it to one gzip implementation. If GitHub ever
+    # regenerates the archive differently, every install would break at once.
+    outside = testpath/"outside"
+    outside.mkpath
+    output = shell_output("cd #{outside} && #{bin}/envmove setup", 1)
     assert_match "git", output
   end
 end
