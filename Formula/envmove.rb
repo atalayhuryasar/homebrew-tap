@@ -47,7 +47,9 @@ class Envmove < Formula
     # regenerates the archive differently, every install would break at once.
     outside = testpath/"outside"
     outside.mkpath
-    output = shell_output("cd #{outside} && #{bin}/envmove setup", 1)
+    # Diagnostics go to stderr, which is where a CLI should put them, so the stream has
+    # to be merged or the assertion sees nothing.
+    output = shell_output("cd #{outside} && #{bin}/envmove setup 2>&1", 1)
     assert_match "git", output
   end
 end
