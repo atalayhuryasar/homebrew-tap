@@ -1,3 +1,4 @@
+require "English"
 class Envmove < Formula
   desc "Carry the project context git refuses to: .env, handover docs, AI agent state"
   homepage "https://github.com/atalayhuryasar/envmove"
@@ -39,17 +40,16 @@ class Envmove < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/envmove version")
 
-    # Setup must refuse politely outside a repository rather than write state somewhere
-    # unexpected, and the message has to name git or the failure is a mystery.
-    #
-    # No sha256 above on purpose: this builds from source and the tarball is
-    # GitHub-generated, so a checksum pins it to one gzip implementation. If GitHub ever
-    # regenerates the archive differently, every install would break at once.
     outside = testpath/"outside"
     outside.mkpath
-    # Diagnostics go to stderr, which is where a CLI should put them, so the stream has
-    # to be merged or the assertion sees nothing.
-    output = shell_output("cd #{outside} && #{bin}/envmove setup 2>&1", 1)
-    assert_match "git", output
+
+    # Backticks rather than shell_output. envmove writes diagnostics to stderr, which is
+    # where a CLI should put them, and the assertion needs both streams; shell_output
+    # only captures stdout and returned an empty string here.
+    output = `cd #{outside.to_s.shellescape} && #{bin}/envmove setup 2>&1`
+    status = $CHILD_STATUS
+
+    assert_equal 1, status.exitstatus, "setup must fail outside a git repository"
+    assert_match "git", output, "the failure has to say what was wrong"
   end
 end
