@@ -4,6 +4,12 @@ Official Homebrew Tap for macOS applications and utilities by [@atalayhuryasar](
 
 ---
 
+## 📦 Available Formulae
+
+| Formula | Description | Installation |
+|---|---|---|
+| **envmove** | Carry the project context git refuses to: `.env`, handover docs, AI agent state | `brew install atalayhuryasar/tap/envmove` |
+
 ## 📦 Available Casks
 
 | App | Description | Installation |
@@ -30,6 +36,15 @@ brew install --cask <cask-name>
 brew update
 brew upgrade --cask
 ```
+
+---
+
+---
+
+## 📌 Notes
+
+- **envmove** is macOS only, by choice. Its private key lives in the login keychain.
+  See [DESIGN.md](https://github.com/atalayhuryasar/envmove/blob/main/DESIGN.md) for why.
 
 ---
 
