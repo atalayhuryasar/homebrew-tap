@@ -21,8 +21,10 @@ class Envmove < Formula
 
   def install
     ENV["CGO_ENABLED"] = "0"
-    # std_go_args takes no version keyword; the ldflag is spelled out here instead.
-    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}")
+    # The package has to be named explicitly. Without it go build targets the current
+    # directory, which is the module root, and fails with "no Go files".
+    # std_go_args takes no version keyword either, so the ldflag is spelled out here.
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}"), "./cmd/envmove"
     bin.install "envmove"
   end
 
