@@ -1,14 +1,19 @@
 class Envmove < Formula
   desc "Carry the project context git refuses to: .env, handover docs, AI agent state"
   homepage "https://github.com/atalayhuryasar/envmove"
-  url "https://github.com/atalayhuryasar/envmove/archive/refs/tags/v#{version}.tar.gz"
-  version "0.2.0"
   license "MIT"
+
+  # The tag is written out rather than interpolated from `version`. Homebrew's own
+  # style rules put `url` before `version`, so "#{version}" would expand to an empty
+  # string and the download would 404 on "v.tar.gz". Keeping both lines literal and in
+  # step is less clever and actually works.
+  url "https://github.com/atalayhuryasar/envmove/archive/refs/tags/v0.2.0.tar.gz"
+  version "0.2.0"
   head "https://github.com/atalayhuryasar/envmove.git", branch: "main"
 
   # envmove is a plain Go binary with no cgo and no runtime dependency beyond git, which
   # is what makes it installable from source this way at all. Built from the tagged
-  # source so that a given formula always produces the same commit.
+  # source so a given formula version always produces the same commit.
   depends_on "go" => :build
   depends_on "git"
 
